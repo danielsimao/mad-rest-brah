@@ -1,18 +1,21 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 
-mongoose.connect('mongodb://127.0.0.1:27017/task-manager-api', {
-    useNewUrlParser: true,
-    useCreateIndex: true
-})
+const db =
+  "mongodb+srv://luna123:1234@cluster0-vixcw.mongodb.net/test?retryWrites=true";
 
-const Task = mongoose.model('Task', {
-    description: {
-        type: String,
-        required: true,
-        trim: true
-    },
-    completed: {
-        type: Boolean,
-        default: false
-    }
-})
+mongoose
+  .connect(db, { useNewUrlParser: true, useCreateIndex: true })
+  .then(() => console.log("Mongodb Connected..."))
+  .catch(err => console.log(err));
+
+const Task = mongoose.model("Task", {
+  description: {
+    type: String,
+    required: true,
+    trim: true
+  },
+  completed: {
+    type: Boolean,
+    default: false
+  }
+});
