@@ -1,22 +1,27 @@
-const express = require('express')
-require('./db/mongoose')
-const User = require('./models/user')
+const express = require("express");
+require("./db/mongoose");
 
-const app = express()
-const port = process.env.PORT || 3000
+const User = require("./models/user");
+const Task = require("./models/task");
 
-app.use(express.json())
+const app = express();
+const port = process.env.PORT || 3000;
 
-app.post('/users', (req, res) => {
-    const user = new User(req.body)
+app.use(express.json());
 
-    user.save().then(() => {
-        res.send(user)
-    }).catch((e) => {
-        res.status(400).send(e)
+app.post("/users", (req, res) => {
+  const user = new User(req.body);
+
+  user
+    .save()
+    .then(() => {
+      res.send(user);
     })
-})
+    .catch(e => {
+      res.status(400).send(e);
+    });
+});
 
 app.listen(port, () => {
-    console.log('Server is up on port ' + port)
-})
+  console.log("Server is up on port " + port);
+});
